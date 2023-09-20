@@ -8,7 +8,7 @@ export default function Guest() {
     // debugger;
 
     // if (token) {
-    //     return <Navigate to='/home' />
+    //     return <Navigate to='/' />
     // }
 
     return (

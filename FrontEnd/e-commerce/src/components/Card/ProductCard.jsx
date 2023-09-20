@@ -28,6 +28,7 @@ export default function ProductCard() {
     }, [categoryId]);
     // console.log(products);
 
+
     return (
 
         <div>
@@ -55,6 +56,7 @@ export default function ProductCard() {
                                 show Details
                             </button>
                         </Link>
+
                     </div>
 
                 ))}

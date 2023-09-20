@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MenuNavbar from "./MenuNavbar";
 import MenuButton from "./MenuButton";
 import LogoNavbar from "./LogoNavbar";
@@ -6,6 +6,8 @@ import Search from "./Search";
 import Logout from "../../views/Auth/Logout";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
+import { useStateContext } from "../../contexts/ContextsProvider";
+import axiosClient from "../../axios";
 
 
 export default function Navbar() {
@@ -15,11 +17,27 @@ export default function Navbar() {
         setOpen(!open);
     };
 
+    const [user, setUser] = useState([])
+    const { token } = useStateContext(localStorage.getItem('ACCESS_TOKEN'))
+    console.log('token', token)
+    useEffect(() => {
+        try {
+            if (token) {
+                axiosClient.get('/user')
+                    .then((res) => {
+                        setUser(res.data.name)
+                    })
+            } else return
+        } catch (err) {
+            console.log('err', err)
+        }
+    }, [])
+
     return (
         <div >
             <div className="antialiased dark-mode:bg-gray-900 relative z-50 ">
                 <div className="w-full text-gray-700 dark-mode:text-gray-200 dark-mode:bg-gray-800  bg-gray-200  ">
-                    <div className="flex flex-col  max-w-screen-xl px-4 mx-auto f md:items-center md:justify-between md:flex-row md:px-4 lg:px-4">
+                    <div className="flex flex-col  max-w-screen-xl px-2 mx-auto f md:items-center md:justify-between md:flex-row md:px-4 lg:px-2">
 
                         <div className="flex flex-row items-center justify-between p-4">
 
@@ -27,6 +45,11 @@ export default function Navbar() {
                             <Link to={`/dashboard`} >
                                 <MenuNavbar text="Dashbord" />
                             </Link>
+                            {
+                                token ? <Link to={`/user`} >
+                                    <MenuNavbar text={user} />
+                                </Link> : ''
+                            }
                             <button
                                 className="rounded-lg md:hidden focus:outline-none focus:shadow-outline"
                                 onClick={toggleNavbar}

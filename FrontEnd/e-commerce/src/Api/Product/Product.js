@@ -51,6 +51,15 @@ const productApi = {
             }
         })
     },
+    deleteProduct: (productId) => {
+        const url = `/product/delete/${productId}`;
+        return axiosClient.delete(url, productId, {
+            headers: {
+                'Content-Type': 'multipart/form-data', // Set correct content type for FormData
+                'Accept': 'application/json',
+            }
+        })
+    },
 
 }
 

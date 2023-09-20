@@ -14,6 +14,8 @@ import EditCategory from './components/Category/EditCategory';
 import AddCategory from './components/Category/AddCategory';
 import EditProduct from './components/Products/TestEdit';
 import AddProduct from './components/Products/AddProduct';
+import Cart from './components/Cart';
+import Users from './views/Users';
 
 
 
@@ -21,7 +23,7 @@ import AddProduct from './components/Products/AddProduct';
 
 const router = createBrowserRouter([
     {
-        // path: '/home',
+        // path: '/',
         element: <Guest />,
         children: [
             {
@@ -34,7 +36,7 @@ const router = createBrowserRouter([
                 element: <Register />
             },
             {
-                path: '/home',
+                path: '/',
                 element: <HomePage />,
 
             },
@@ -98,12 +100,16 @@ const router = createBrowserRouter([
                 path: '/addproduct',
                 element: <AddProduct />
             },
+            {
+                path: '/addtocart',
+                element: <Cart />
+            },
 
 
-            // {
-            //     path: '/product/:productId/edit',
-            //     element: <EditProuduct />
-            // }
+            {
+                path: '/user',
+                element: <Users />
+            }
 
         ]
     },

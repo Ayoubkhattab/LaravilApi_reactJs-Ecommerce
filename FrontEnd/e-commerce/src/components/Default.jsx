@@ -4,22 +4,13 @@ import { useStateContext } from '../contexts/ContextsProvider'
 
 export default function Default() {
 
-    const { token } = useStateContext();
+    const { user, token } = useStateContext();
 
     if (!token) {
         return <Navigate to='/login' />
     }
-    // const onLogout = ev => {
-    //     ev.preventDefault()
 
-    //     axiosClient.post('/logout')
-    //         .then(() => {
-    //             setUser({})
-    //             setToken(null)
-    //         })
-    // }
 
-    // console.log(user);
     return (
         <div>
             <aside>
